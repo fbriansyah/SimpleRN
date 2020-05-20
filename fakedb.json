@@ -1,0 +1,15 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "password": "admin",
+            "token": "ertqyw17823hjsoqwe"
+        },
+        {
+            "username": "febrian",
+            "password": "123qweasdzxc",
+            "token": "23asdwqijp123s"
+        }
+    ],
+    "roles": ["admin", "user", "manager"]
+}
