@@ -1,20 +1,14 @@
 import React, {useLayoutEffect} from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-  Button,
-} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Dimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export const ScreenName = 'Settings';
+export const ScreenName = 'Profile';
 
-export default function SettingScreen({navigation}) {
+export default function ProfileScreen({navigation}) {
   useLayoutEffect(() => {
+    // Navigation Settings
     navigation.setOptions({
-      headerShown: false,
+      headerShown: true,
     });
   }, [navigation]);
 
@@ -23,11 +17,7 @@ export default function SettingScreen({navigation}) {
       <SafeAreaView>
         <ScrollView>
           <View style={styles.container}>
-            <Text>Setting Screen</Text>
-            <Button
-              title="Go To Profile Setting"
-              onPress={() => navigation.navigate('Profile')}
-            />
+            <Text>Profile Screen</Text>
           </View>
         </ScrollView>
       </SafeAreaView>

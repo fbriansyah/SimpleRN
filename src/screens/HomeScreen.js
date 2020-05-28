@@ -10,7 +10,7 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useAuth} from '../contexts/AuthContext';
 
-import TestComponent from '../components/TestComponent';
+export const ScreenName = 'Dashboard';
 
 export default function HomeScreen({navigation}) {
   const [count, setCount] = useState(0);
@@ -32,7 +32,7 @@ export default function HomeScreen({navigation}) {
         <ScrollView>
           <View style={styles.container}>
             <Text>Home Screen {count}</Text>
-            <TestComponent onPress={increment} />
+            <Button title="Increment" onPress={increment} color="purple" />
             <Button title="Logout" onPress={logout} color="blue" />
           </View>
         </ScrollView>
