@@ -3,7 +3,7 @@ import React from 'react';
 import {loginRequest} from '../api/UserApi';
 
 const intialState = {
-  isLogin: false,
+  isLogin: true,
   isLoading: false,
   error: '',
   user: {
@@ -40,7 +40,7 @@ function reducer(state, action) {
       return {...state, isLoading: false};
     }
     case types.logout: {
-      return {...state, user: {...intialState.user}, isLogin: false};
+      return {...state, user: {...intialState.user}, error: '', isLogin: false};
     }
     default: {
       throw new Error(`Unsupported action type: ${action.type}`);

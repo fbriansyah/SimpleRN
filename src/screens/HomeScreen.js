@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: Math.round(Dimensions.get('window').height),
+    height: Math.round(Dimensions.get('window').height - 75),
   },
 });

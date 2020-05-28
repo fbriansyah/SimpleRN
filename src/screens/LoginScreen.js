@@ -6,10 +6,12 @@ import {
   ScrollView,
   View,
   Text,
-  TextInput,
   Dimensions,
   Button,
 } from 'react-native';
+
+import TextInputWithIcon from '../components/UI/TextInputWithIcon';
+
 import Theme from '../theme';
 import Colors from '../theme/colors';
 import {useAuth} from '../contexts/AuthContext';
@@ -17,7 +19,9 @@ import {useAuth} from '../contexts/AuthContext';
 export default function LoginScreen({navigation}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [hiddenPassword, sethiddenPassword] = useState(true);
   const {login, state} = useAuth();
+  const url = 'http://localhost:3030/users';
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,6 +32,19 @@ export default function LoginScreen({navigation}) {
   const loginHandler = () => {
     login(username, password);
   };
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await fetch(url);
+        const jsonData = await res.json();
+        console.log(jsonData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getData();
+  }, [url]);
 
   const errorText = () => <Text style={styles.errorText}>{state.error}</Text>;
 
@@ -40,18 +57,20 @@ export default function LoginScreen({navigation}) {
           <View style={styles.formContainer}>
             <Text style={styles.title}>Silahkan Login</Text>
             {state.error !== '' ? errorText() : null}
-            <TextInput
-              style={styles.inputContainer}
+            <TextInputWithIcon
               placeholder="Masukkan Username"
               onChangeText={text => setUsername(text)}
-              autoCapitalize="none"
               defaultValue={username}
+              autoCapitalize="none"
+              icon="account-circle"
             />
-            <TextInput
-              style={styles.inputContainer}
+            <TextInputWithIcon
               placeholder="Masukkan Password"
               onChangeText={text => setPassword(text)}
-              secureTextEntry={true}
+              secureTextEntry={hiddenPassword}
+              icon="lock"
+              trailingIcon={hiddenPassword ? 'eye' : 'eye-off'}
+              onTrailingIconPressed={() => sethiddenPassword(!hiddenPassword)}
               defaultValue={password}
             />
             <Button
