@@ -3,7 +3,7 @@ import React from 'react';
 import {loginRequest} from '../api/UserApi';
 
 const intialState = {
-  isLogin: true,
+  isLogin: false,
   isLoading: false,
   error: '',
   user: {
@@ -64,40 +64,19 @@ export function useAuth() {
   const [state, dispatch] = context;
 
   // login logic
-  const login = (username, password) => {
+  const login = async (username, password) => {
     // dispatch({type: types.loadingStart}); // start loading
+    // let responseData = {code: 0, message: '', data: null};
 
-    const response = loginRequest(username, password);
-    if (response.code !== 0) {
+    const response = await loginRequest(username, password);
+    if (response.length === 0) {
       dispatch({
         type: types.error,
-        payload: response.message,
+        payload: 'Username atau password tidak sesuai',
       });
     } else {
-      dispatch({type: types.login, payload: response.data});
+      dispatch({type: types.login, payload: response[0]});
     }
-    // loginRequest(username, password)
-    //   .then(response => {
-    //     // cek response code dari api
-    //     console.log(response);
-    //     if (response === undefined) {
-    //       return dispatch({
-    //         type: types.error,
-    //         payload: 'Something wrong',
-    //       });
-    //     }
-
-    //     if (response.code !== 0) {
-    //       dispatch({
-    //         type: types.error,
-    //         payload: 'Username atau password salah',
-    //       });
-    //     } else {
-    //       dispatch({type: types.login, payload: response.data});
-    //     }
-    //   })
-    //   .catch(err => console.error(`[AuthContext:login]: ${err}`))
-    //   .finally(() => dispatch({type: types.loadingEnd})); // end loading
   };
 
   const logout = () => dispatch({type: types.logout});

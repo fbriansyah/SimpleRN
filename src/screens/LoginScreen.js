@@ -21,7 +21,7 @@ export default function LoginScreen({navigation}) {
   const [password, setPassword] = useState('');
   const [hiddenPassword, sethiddenPassword] = useState(true);
   const {login, state} = useAuth();
-  const url = 'http://localhost:3030/users';
+  // const url = 'http://localhost:3030/users';
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -33,18 +33,18 @@ export default function LoginScreen({navigation}) {
     login(username, password);
   };
 
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await fetch(url);
-        const jsonData = await res.json();
-        console.log(jsonData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
-  }, [url]);
+  // React.useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await fetch(url);
+  //       const jsonData = await res.json();
+  //       console.log(jsonData);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getData();
+  // }, [url]);
 
   const errorText = () => <Text style={styles.errorText}>{state.error}</Text>;
 
