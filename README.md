@@ -23,5 +23,5 @@ Code utama react native berada didalam folder src. keterangan folder:
 Api server menggunakan jsonserver, didalam direktori _project_ terdapat fakedb.json yang menjadi
 database dummy. Cara menggunakan json server dan fakedb api.
 
-1. Install jsonserver secara gloabal `npm install -g jsonserver`
-2. Jalankan jsonserver dengan _command_ `npm run server` atau `yarn server`
+1. Install json-server secara gloabal `npm install -g json-server`
+2. Jalankan json-server dengan _command_ `npm run server` atau `yarn server`
